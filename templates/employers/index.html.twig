@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employers index{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+
+    <h1>Employers index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Email</th>
+                <th>Phone</th>
+{#                <th>Company_id</th>#}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employer in employers %}
+            <tr>
+                <td>{{ employer.id }}</td>
+                <td>{{ employer.firstName }}</td>
+                <td>{{ employer.lastName }}</td>
+                <td>{{ employer.email }}</td>
+                <td>{{ employer.phone }}</td>
+{#                <td>{{ employer.companyId }}</td>#}
+                <td>
+                    <a class="btn btn-md btn-warning" href="{{ path('employers_show', {'id': employer.id}) }}">show</a>
+                    <a class="btn btn-md btn-warning" href="{{ path('employers_edit', {'id': employer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-md btn-success" href="{{ path('employers_new') }}">Create new</a>
+</div>
+{% endblock %}
